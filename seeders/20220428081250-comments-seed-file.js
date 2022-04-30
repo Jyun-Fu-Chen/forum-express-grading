@@ -6,7 +6,7 @@ module.exports = {
       { type: queryInterface.sequelize.QueryTypes.SELECT })
     const restaurants = await queryInterface.sequelize.query('SELECT id FROM Restaurants;',
       { type: queryInterface.sequelize.QueryTypes.SELECT })
-    await queryInterface.bulkInsert('Restaurants',
+    await queryInterface.bulkInsert('Comments',
       Array.from({ length: 50 }, () => ({
         text: faker.name.findName(),
         userId: users[Math.floor(Math.random() * users.length)].id,
