@@ -14,20 +14,99 @@
   </div>
 </div>
 </div>
-<div class="card">
-  <div class="card-header">
-    {{comment.count}}則餐廳評論
+<div>
+  <div class="mb-3">
+    <div class="card">
+      <div class="card-header">
+        {{user.followingsCount}}位followings(追蹤者)
+      </div>
+      <div class="card-body">
+        <div>
+          {{#ifCond user.followginsCount 0}}
+          <h5>您尚未有任何追蹤者</h5>
+          {{else}}
+          <ul class="list-group list-group-horizontal">
+            {{#each user.Followings}}
+            <li class="list-group-item">
+              {{#ifCond this.image null}}
+              <img src="https://via.placeholder.com/140" width="50px" height="50px" />
+              {{else}}
+              <img src="{{this.image}}" width="50px" height="50px" style="transition: opacity 0.5s; opacity:0;"
+                onload="this.style.opacity=1;">
+              {{/ifCond}}
+            </li>
+            {{/each}}
+          </ul>
+          {{/ifCond}}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        {{user.followersCount}}位follower(追隨者)
+      </div>
+      <div class="card-body">
+        <div>
+          {{#ifCond user.followersCount 0}}
+          <h5>您尚未有任何追隨者</h5>
+          {{else}}
+          <ul class="list-group list-group-horizontal">
+            {{#each user.Followers}}
+            <li class="list-group-item">
+              {{#ifCond this.image null}}
+              <img src="https://via.placeholder.com/140" width="50px" height="50px" />
+              {{else}}
+              <img src="{{this.image}}" width="50px" height="50px" style="transition: opacity 0.5s; opacity:0;"
+                onload="this.style.opacity=1;">
+              {{/ifCond}}
+            </li>
+            {{/each}}
+          </ul>
+          {{/ifCond}}
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    {{#ifCond comment.count 0}}
-    <h5>您尚未有任何評論</h5>
-    {{else}}
-    <ul class="list-group list-group-horizontal">
-      {{#each comment.rows}}
-      <li class="list-group-item"><a href="/restaurants/{{this.restaurantId}}"><img src="{{Restaurant.image}}"
-            alt="Card image cap" width="100px" height="80px" style="transition: opacity 0.5s; opacity:0;"
-            onload="this.style.opacity=1;"></a></li>
-      {{/each}}
-    </ul>
-    {{/ifCond}}
+  <div>
+    <div class="card">
+      <div class="card-header">
+        {{comment.count}}則餐廳評論
+      </div>
+      <div class="card-body">
+        <div>
+          {{#ifCond comment.count 0}}
+          <h5>您尚未有任何評論</h5>
+          {{else}}
+          <ul class="list-group list-group-horizontal">
+            {{#each newCommentedRestaurant}}
+            <li class="list-group-item"><a href="/restaurants/{{this.restaurantId}}"><img src="{{Restaurant.image}}"
+                  alt="Card image cap" width="100px" height="80px" style="transition: opacity 0.5s; opacity:0;"
+                  onload="this.style.opacity=1;"></a></li>
+            {{/each}}
+          </ul>
+          {{/ifCond}}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        {{user.favoritedRestaurantsCount}}個餐廳收藏
+      </div>
+      <div class="card-body">
+        <div>
+          {{#ifCond restaurant.count 0}}
+          <h5>您尚未有任何餐廳收藏</h5>
+          {{else}}
+          <ul class="list-group list-group-horizontal">
+            {{#each user.FavoritedRestaurants}}
+            <li class="list-group-item"><a href="/restaurants/{{this.id}}"><img src="{{this.image}}"
+                  alt="Card image cap" width="100px" height="80px" style="transition: opacity 0.5s; opacity:0;"
+                  onload="this.style.opacity=1;"></a></li>
+            {{/each}}
+          </ul>
+          {{/ifCond}}
+        </div>
+      </div>
+    </div>
   </div>
+</div>
